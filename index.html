@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#4b347d">
+  <meta name="description" content="Catat profit dan loss dalam USD dan IDR.">
+  <title>Lavender P&L</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">PERSONAL FINANCE TRACKER</p>
+        <h1>Lavender <span>P&L</span></h1>
+      </div>
+      <div class="top-icon" aria-hidden="true">✦</div>
+    </header>
+
+    <main>
+      <section class="summary-card">
+        <div class="summary-heading">
+          <div><p class="muted light">Total P&L</p><h2 id="totalPnl">$0.00</h2></div>
+          <span class="period-pill">All time</span>
+        </div>
+        <div class="summary-bottom">
+          <div><span class="summary-label">Dalam Rupiah</span><strong id="totalIdr">Rp0</strong></div>
+          <div><span class="summary-label">Jumlah transaksi</span><strong id="transactionCount">0</strong></div>
+        </div>
+        <div class="decor-orb orb-one"></div><div class="decor-orb orb-two"></div>
+      </section>
+
+      <section class="rate-panel panel">
+        <div class="section-title"><div><span class="section-kicker">KONVERSI</span><h3>Kurs USD / IDR</h3></div><span class="rate-tag">Manual</span></div>
+        <label for="exchangeRate">1 USD =</label>
+        <div class="rate-input-wrap"><span>Rp</span><input id="exchangeRate" type="number" min="1" step="1" value="16000" inputmode="numeric"><button id="saveRate" class="small-button">Simpan</button></div>
+        <p class="helper">Atur kurs sesuai kebutuhan. Nilai rupiah dihitung dari kurs ini.</p>
+      </section>
+
+      <section class="panel form-panel">
+        <div class="section-title"><div><span class="section-kicker">CATAT AKTIVITAS</span><h3>Tambah transaksi</h3></div><span class="plus-mark">＋</span></div>
+        <form id="transactionForm">
+          <div class="field-grid">
+            <label>Tanggal<input id="date" type="date" required></label>
+            <label>Jenis
+              <select id="type"><option value="profit">Profit</option><option value="loss">Loss</option></select>
+            </label>
+          </div>
+          <label>Nominal
+            <div class="amount-wrap"><span id="currencySymbol">$</span><input id="amount" type="number" min="0.01" step="0.01" placeholder="0.00" required inputmode="decimal"></div>
+          </label>
+          <label>Mata uang
+            <div class="currency-toggle"><button type="button" class="currency-option active" data-currency="USD">USD ($)</button><button type="button" class="currency-option" data-currency="IDR">IDR (Rp)</button></div>
+          </label>
+          <label>Catatan <input id="note" type="text" maxlength="80" placeholder="Contoh: Trading, bisnis, investasi..."></label>
+          <button class="primary-button" type="submit">＋ Simpan transaksi</button>
+        </form>
+      </section>
+
+      <section class="history-section">
+        <div class="section-title history-heading"><div><span class="section-kicker">RIWAYAT</span><h3>Transaksi terakhir</h3></div><button id="exportCsv" class="outline-button">Export CSV ↓</button></div>
+        <div class="filter-row"><button class="filter active" data-filter="all">Semua</button><button class="filter" data-filter="profit">Profit</button><button class="filter" data-filter="loss">Loss</button></div>
+        <div id="transactionList" class="transaction-list"><div class="empty-state"><span>✧</span><strong>Belum ada transaksi</strong><p>Transaksi yang kamu tambahkan akan muncul di sini.</p></div></div>
+      </section>
+    </main>
+    <footer>Lavender P&L <span>•</span> Data tersimpan di perangkat ini</footer>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
